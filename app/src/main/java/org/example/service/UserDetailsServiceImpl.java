@@ -5,7 +5,6 @@ import lombok.Data;
 import org.example.entities.UserInfo;
 import org.example.model.UserInfoDto;
 import org.example.repository.UserRepository;
-import org.example.utils.ValidationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -29,8 +28,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private final PasswordEncoder passwordEncoder;
 
-    @Autowired
-    private final ValidationUtils validationUtils;
+//    @Autowired
+//    private final ValidationUtils validationUtils;
 
 
     @Override
@@ -47,9 +46,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     }
 
     public Boolean signupUser(UserInfoDto userInfoDto) {
-        if (!validationUtils.isValidEmail(userInfoDto.getEmail()) || !validationUtils.isValidPassword(userInfoDto.getPassword())) {
-            return false;
-        }
+//        if (!validationUtils.isValidEmail(userInfoDto.getEmail()) || !validationUtils.isValidPassword(userInfoDto.getPassword())) {
+//            return false;
+//        }
         userInfoDto.setPassword(passwordEncoder.encode(userInfoDto.getPassword()));
         if (Objects.nonNull(checkIfUserAlreadyExists(userInfoDto))) {
             return false;
