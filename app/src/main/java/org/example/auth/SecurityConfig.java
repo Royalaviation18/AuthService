@@ -33,7 +33,6 @@ public class SecurityConfig {
 
     //using autowire so that UserRepository when called here gets autowired automatically
     @Bean
-    @Autowired
     public UserDetailsService userDetailsService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         return new UserDetailsServiceImpl(userRepository, passwordEncoder);
     }
